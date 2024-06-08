@@ -1,0 +1,273 @@
+[
+    {
+      "id": 1,
+      "company": "Scoot",
+      "address": {
+        "building": "1837",
+        "coord": [-98.376447, -42.439107],
+        "street": "15 Street",
+        "zipcode": "93251"
+      },
+      "city": "United Kingdom",
+      "reviews": [
+        {
+          "date": {"$date": 1705108912271},
+          "comments": ["Great place to work!", "Good benefits and salary.", "Needs improvement in management."],
+          "score": 4.2
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "company": "Blogr",
+      "address": {
+        "building": "4265",
+        "coord": [127.651335, 50.388042],
+        "street": "4 Avenue",
+        "zipcode": "47925"
+      },
+      "city": "United States",
+      "reviews": [
+        {
+          "date": {"$date": 1697790512271},
+          "comments": ["Excellent team and work-life balance.", "Good benefits and salary."],
+          "score": 3.8
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "company": "Vector",
+      "address": {
+        "building": "5546",
+        "coord": [65.388297, -29.426993],
+        "street": "9 Street",
+        "zipcode": "27613"
+      },
+      "city": "Russia",
+      "reviews": [
+        {
+          "date": {"$date": 1714974912271},
+          "comments": ["Challenging but rewarding.", "Excellent team and work-life balance."],
+          "score": 4.0
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "company": "Office Lite",
+      "address": {
+        "building": "6225",
+        "coord": [-19.134121, 23.512748],
+        "street": "10 Boulevard",
+        "zipcode": "83749"
+      },
+      "city": "Japan",
+      "reviews": [
+        {
+          "date": {"$date": 1711501312271},
+          "comments": ["Great place to work!", "Needs improvement in management."],
+          "score": 3.1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "company": "Pod",
+      "address": {
+        "building": "843",
+        "coord": [-135.198724, -78.184723],
+        "street": "7 Avenue",
+        "zipcode": "31827"
+      },
+      "city": "Japan",
+      "reviews": [
+        {
+          "date": {"$date": 1696821312271},
+          "comments": ["Good benefits and salary.", "Excellent team and work-life balance."],
+          "score": 4.6
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "company": "Creative",
+      "address": {
+        "building": "2561",
+        "coord": [108.937845, -9.629334],
+        "street": "2 Boulevard",
+        "zipcode": "14792"
+      },
+      "city": "Germany",
+      "reviews": [
+        {
+          "date": {"$date": 1708190912271},
+          "comments": ["Excellent team and work-life balance."],
+          "score": 2.5
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "company": "Pomodoro",
+      "address": {
+        "building": "7002",
+        "coord": [74.874191, 20.193174],
+        "street": "11 Street",
+        "zipcode": "52987"
+      },
+      "city": "United States",
+      "reviews": [
+        {
+          "date": {"$date": 1713675712271},
+          "comments": ["Challenging but rewarding."],
+          "score": 3.9
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "company": "Maker",
+      "address": {
+        "building": "572",
+        "coord": [92.127446, 27.857092],
+        "street": "8 Avenue",
+        "zipcode": "13986"
+      },
+      "city": "United Kingdom",
+      "reviews": [
+        {
+          "date": {"$date": 1704627312271},
+          "comments": ["Needs improvement in management.", "Good benefits and salary."],
+          "score": 2.7
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "company": "Coffeeroasters",
+      "address": {
+        "building": "4851",
+        "coord": [-13.409107, -17.689134],
+        "street": "13 Boulevard",
+        "zipcode": "68725"
+      },
+      "city": "Singapore",
+      "reviews": [
+        {
+          "date": {"$date": 1699536112271},
+          "comments": ["Excellent team and work-life balance.", "Great place to work!"],
+          "score": 4.5
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "company": "Mastercraft",
+      "address": {
+        "building": "1946",
+        "coord": [-89.625471, 31.174902],
+        "street": "6 Street",
+        "zipcode": "85941"
+      },
+      "city": "United States",
+      "reviews": [
+        {
+          "date": {"$date": 1712126112271},
+          "comments": ["Good benefits and salary.", "Challenging but rewarding."],
+          "score": 4.3
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "company": "Crowdfund",
+      "address": {
+        "building": "3795",
+        "coord": [34.932189, -62.194134],
+        "street": "5 Avenue",
+        "zipcode": "19473"
+      },
+      "city": "New Zealand",
+      "reviews": [
+        {
+          "date": {"$date": 1704037312271},
+          "comments": ["Great place to work!", "Needs improvement in management."],
+          "score": 2.9
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "company": "Typemaster",
+      "address": {
+        "building": "2456",
+        "coord": [-101.849473, -10.684139],
+        "street": "19 Boulevard",
+        "zipcode": "62851"
+      },
+      "city": "United Kingdom",
+      "reviews": [
+        {
+          "date": {"$date": 1705596112271},
+          "comments": ["Challenging but rewarding.", "Good benefits and salary."],
+          "score": 4.1
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "company": "Office Lite",
+      "address": {
+        "building": "3011",
+        "coord": [71.927402, 6.271835],
+        "street": "14 Street",
+        "zipcode": "19482"
+      },
+      "city": "New Zealand",
+      "reviews": [
+        {
+          "date": {"$date": 1699184112271},
+          "comments": ["Needs improvement in management.", "Excellent team and work-life balance."],
+          "score": 3.2
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "company": "Coffeeroastes",
+      "address": {
+        "building": "9628",
+        "coord": [-105.276471, -25.984723],
+        "street": "18 Avenue",
+        "zipcode": "71925"
+      },
+      "city": "Singapore",
+      "reviews": [
+        {
+          "date": {"$date": 1706730112271},
+          "comments": ["Great place to work!", "Excellent team and work-life balance."],
+          "score": 4.7
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "company": "Blogr",
+      "address": {
+        "building": "8429",
+        "coord": [55.739134, -7.401784],
+        "street": "3 Boulevard",
+        "zipcode": "39824"
+      },
+      "city": "United States",
+      "reviews": [
+        {
+          "date": {"$date": 1711872512271},
+          "comments": ["Challenging but rewarding.", "Good benefits and salary."],
+          "score": 4.0
+        }
+      ]
+    }
+]
+  

@@ -1,0 +1,5 @@
+Railway:
+mongoimport --uri mongodb://mongo:yxI1wR23v5dgOYxgKSwf@containers-us-west-54.railway.app:5622/companiesDB?authSource=admin --collection companies --jsonArray companies.json
+
+Local: 
+mongoimport --uri mongodb://localhost:27017  --db companiesDB --collection companies --jsonArray companies.json

@@ -1,0 +1,36 @@
+<div class="container py-3 d-flex flex-column align-items-center">
+    <div class="row justify-content-center">
+        <div 
+            class="card m-2 py-2 col-auto" 
+            style="width: 19rem; cursor: pointer;" 
+            *ngFor="let job of displayedJobs; let i = index"
+            [routerLink]="['/job', job.id]"
+        >
+            <div class="card-body d-flex flex-column justify-content-between gap-5">
+                <div class="d-flex flex-column gap-1">
+                    <div>
+                        <img [style.background]="job.logoBackground" [src]="job.logo" [alt]="job.company" class="svg-img">
+                    </div>
+                    <div class="pt-4 fw-light">{{job.postedAt}} | {{job.contract}}</div>
+                    <div class="fw-bold">{{job.position}}</div>
+                    <div class="fw-light">{{job.company}}</div>
+                </div>
+                <div>{{job.location}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="pt-4">
+        <button 
+            *ngIf="displayedJobs.length < allJobs.length - 1" 
+            class="btn btn-dark" 
+            type="button" 
+            (click)="loadMore()"
+        >Load more</button>
+        <button 
+            *ngIf="displayLimit > initialDisplayLimit" 
+            class="btn btn-dark" 
+            type="button" 
+            (click)="loadLess()"
+        >Show less</button>
+    </div>
+</div>

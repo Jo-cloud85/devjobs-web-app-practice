@@ -1,0 +1,7 @@
+.svg-img {
+    width: 3rem;
+    padding: 0.5rem;
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+    object-fit: contain; /* Ensures the SVG maintains its aspect ratio */
+}

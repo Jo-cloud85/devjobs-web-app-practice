@@ -1,0 +1,184 @@
+<div class="container col-8 py-5">
+    <form class="form-group container d-flex flex-column gap-5" [formGroup]="jobForm" (ngSubmit)="submit()">
+        <!-- Name-->
+        <div>
+            <p>Name</p>
+            <div class="d-flex gap-3" formGroupName="name">
+                <div class="form-group">
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="firstName"
+                        formControlName="firstName"
+                    >
+                    <small for="firstName">First Name</small>
+                    <div *ngIf="jobForm.get('name.firstName')?.touched && jobForm.get('name.firstName')?.invalid">
+                        <small 
+                            class="form-text text-danger"
+                            *ngIf="jobForm.get('name.firstName')?.hasError('required')">
+                            This field is required!
+                        </small>
+                        <small 
+                            class="form-text text-danger"
+                            *ngIf="jobForm.get('name.firstName')?.hasError('minlength')">
+                            First name must be minimally 3 characters long
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="lastName"
+                        formControlName="lastName"
+                    >
+                    <small>Last Name</small>
+                    <div *ngIf="jobForm.get('name.lastName')?.touched && jobForm.get('name.lastName')?.invalid">
+                        <small 
+                            class="form-text text-danger"
+                            *ngIf="jobForm.get('name.lastName')?.hasError('required')">
+                            This field is required!
+                        </small>
+                        <small 
+                            class="form-text text-danger"
+                            *ngIf="jobForm.get('name.lastName')?.hasError('minlength')">
+                            Last name must be minimally 3 characters long
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex gap-3">
+            <!-- Email -->
+            <div>
+                <p>Email</p>
+                <div class="form-group">
+                    <input
+                        class="form-control"
+                        type="email"
+                        id="email"
+                        formControlName="email"
+                        placeholder="example@example.com"
+                    >
+                    <small 
+                        class="form-text text-danger"
+                        *ngIf="jobForm.get('email')?.touched && jobForm.get('email')?.hasError('required')">
+                        Please enter your email
+                    </small>
+                    <small 
+                        class="form-text text-danger"
+                        *ngIf="jobForm.get('email')?.touched && jobForm.get('email')?.hasError('email')">
+                        Please enter a valid email
+                    </small>
+                </div>
+            </div>
+
+            <!-- Mobile Number -->
+            <div> 
+                <p>Mobile Number</p>
+                <div class="form-group">
+                    <input class="form-control" type="text" formControlName="mobileNumber" placeholder="0000 0000">
+                    <small 
+                        class="form-text text-danger"
+                        *ngIf="jobForm.get('mobileNumber')?.touched && jobForm.get('mobileNumber')?.hasError('required')">
+                        This field is valid!
+                    </small>
+                    <small 
+                        class="form-text text-danger"
+                        *ngIf="jobForm.get('mobileNumber')?.touched && jobForm.get('mobileNumber')?.hasError('mobileNumberValidator')">
+                        Please enter a valid mobile number
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex gap-3">
+            <!-- Applied Position -->
+            <div>
+                <p>Applied Position</p>
+                <div>
+                    <select class="form-select" formControlName="position">
+                        <option value="" disabled>Select a position</option>
+                        <option value="frontend-developer">Frontend Developer</option>
+                        <option value="backend-developer">Backend Developer</option>
+                        <option value="fullstack-developer">Fullstack Developer</option>
+                        <option value="devops-engineer">DevOps Engineer</option>
+                        <option value="data-scientist">Data Scientist</option>
+                        <option value="ui-ux-designer">UI/UX Designer</option>
+                    </select>
+                    <small 
+                        class="form-text text-danger"
+                        *ngIf="jobForm.get('position')?.touched && jobForm.get('position')?.hasError('required')">
+                        Please select a position
+                    </small>
+                </div>
+            </div>
+
+            <!-- Starting date -->
+            <div>
+                <p>Earliest Possible Start Date</p>
+                <div>
+                    <input class="form-control" type="date" formControlName="startDate" (change)="checkDueDate()">
+                    <small 
+                        class="form-text text-danger"
+                        *ngIf="jobForm.get('startDate')?.touched && jobForm.get('startDate')?.hasError('required')">
+                        This field is required!
+                    </small>
+                    <small 
+                        class="form-text text-danger"
+                        *ngIf="dueDateInPast">
+                        Date cannot be in the past
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback -->
+        <div>
+            <p>Feedback</p>
+            <div>
+                <textarea class="form-control" formControlName="feedback" rows="5" cols="5" placeholder="Any questions/feedback? ..."></textarea>
+                <small>Max 500 characters long</small>
+                <small 
+                    class="form-text text-danger"
+                    *ngIf="jobForm.get('feedback')?.touched && jobForm.get('feedback')?.hasError('required')">
+                    This field is required! Put N/A if no questions/feedback.
+                </small>
+                <small 
+                    class="form-text text-danger"
+                    *ngIf="jobForm.get('feedback')?.touched && jobForm.get('feedback')?.hasError('maxlength')">
+                    Maximum 500 characters long
+                </small>
+            </div>
+        </div>
+
+        <!-- Upload resume -->
+        <div>
+            <p>Upload Resume</p>
+            <input 
+                class="form-control" 
+                type="file" 
+                (change)="onFileChange($event, 'resume')"
+                formControlName="resume">
+            <small 
+                class="form-text text-danger"
+                *ngIf="jobForm.get('resume')?.touched && jobForm.get('resume')?.hasError('required')">
+                This field is required!
+            </small>
+        </div>
+
+        <!-- Other documents to upload -->
+        <div>
+            <p>Any other documents to upload</p>
+            <input 
+                class="form-control" 
+                type="file" 
+                (change)="onFileChange($event, 'otherDocs')"
+                multiple>
+        </div>
+        <div>
+            <button class="btn btn-primary" [disabled]="jobForm.invalid">Submit</button>
+        </div>
+    </form>
+</div>

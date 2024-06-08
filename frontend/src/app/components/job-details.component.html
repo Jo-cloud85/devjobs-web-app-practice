@@ -1,0 +1,45 @@
+<div class="container d-flex flex-column gap-3 col-8 pt-5">
+    <div class="container p-0">
+        <div class="d-flex align-items-center justify-content-between gap-5 main">
+            <div class="d-flex align-items-center justify-content-center logo-bg" [style.background]="job.logoBackground" >
+                <img [src]="job.logo" [alt]="job.company" class="svg-img">
+            </div>
+            <div>
+                <p class="fs-4 fw-bold m-0">{{job.company}}</p>
+                <p class="fw-light m-0">{{job.company | lowercase}}.com</p>
+            </div>
+            <div class="p-0 ms-auto">
+                <a [href]="job.website" class="btn btn-secondary py-2 px-3">Company Site</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-5 d-flex flex-column gap-4">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex flex-column gap-1">
+                <div class="fw-light">{{job.postedAt}} | {{job.contract}}</div>
+                <div class="fw-bold fs-4">{{job.position}}</div>
+                <div class="fw-bold">{{job.location}}</div>
+            </div>
+            <a [routerLink]="['/job', job.id, 'apply']" class="btn btn-primary py-2 px-3">Apply Now</a>
+        </div>
+
+        <p>{{job.description}}</p>
+
+        <div>
+            <h4>Requirements</h4>
+            <p>{{job.requirements.content}}</p>
+            <ul class="unordered-list" *ngFor="let item of job.requirements.items">
+                <li>{{item}}</li>
+            </ul>
+        </div>
+
+        <div>
+            <h4>What You Will Do</h4>
+            <p>{{job.role.content}}</p>
+            <ul class="ordered-list" *ngFor="let item of job.role.items; let i = index">
+                <li class="ordered-list-item">{{i+1}}. {{item}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

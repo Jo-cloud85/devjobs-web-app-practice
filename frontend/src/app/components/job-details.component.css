@@ -1,0 +1,31 @@
+.svg-img {
+    width: 5rem;
+    padding: 0.5rem;
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+    object-fit: contain;
+}
+
+.main {
+    height: 8rem;
+}
+
+.logo-bg {
+    height: 8rem;
+    width: 8rem;
+}
+
+.ordered-list{
+    padding-left: 1rem;
+    margin: 0.5rem;
+}
+
+.unordered-list{
+    margin: 0.5rem;
+}
+
+.ordered-list-item {
+    list-style-type: none; 
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+}
