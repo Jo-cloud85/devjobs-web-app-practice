@@ -33,25 +33,28 @@ export class CompanyDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    console.log("ngAfterViewInit activated!")
     setTimeout(() => {
       this.initMap();
-    });
+    }, 500);
   }
   
   initMap(): void {
-    const map = L.map('map').setView([51.505, -0.09], 13);
-    const marker = L.marker([51.5, -0.09]).addTo(map);
-    marker.bindPopup("We are here!").openPopup();
-    // const map = L.map('map').setView(this.company.address.coord, 13);
+    const map = L.map('map').setView([51.505, -0.09], 13); // Default view if company coordinates are not available
+
+    if (this.company && this.company.address && this.company.coordinates && this.company.coordinates.length === 2) {
+        map.setView(this.company.coordinates, 13);
+        L.marker(this.company.coordinates).addTo(map)
+            .bindPopup(`<b>${this.company.company}</b><br>${this.company.address}`)
+            .openPopup();
+    } else {
+        console.error("Company coordinates are not available or invalid.");
+    }
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
+        maxZoom: 19,
     }).addTo(map);
-
-    L.marker(this.company.coordinates).addTo(map)
-      .bindPopup(`<b>${this.company.company}</b><br>${this.company.address}`)
-      .openPopup();
-  }
+}
 
   ngOnDestroy(): void {
     this.sub$.unsubscribe();

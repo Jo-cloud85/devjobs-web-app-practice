@@ -4,7 +4,7 @@
       "company": "Scoot",
       "address": {
         "building": "1837",
-        "coord": [-98.376447, -42.439107],
+        "coord": [51.1267494, -2.7397217],
         "street": "15 Street",
         "zipcode": "93251"
       },
@@ -22,7 +22,7 @@
       "company": "Blogr",
       "address": {
         "building": "4265",
-        "coord": [127.651335, 50.388042],
+        "coord": [39.7837304,-100.445882],
         "street": "4 Avenue",
         "zipcode": "47925"
       },
@@ -40,7 +40,7 @@
       "company": "Vector",
       "address": {
         "building": "5546",
-        "coord": [65.388297, -29.426993],
+        "coord": [64.6863136,97.7453061],
         "street": "9 Street",
         "zipcode": "27613"
       },
@@ -58,7 +58,7 @@
       "company": "Office Lite",
       "address": {
         "building": "6225",
-        "coord": [-19.134121, 23.512748],
+        "coord": [36.5748441,139.2394179],
         "street": "10 Boulevard",
         "zipcode": "83749"
       },
@@ -76,7 +76,7 @@
       "company": "Pod",
       "address": {
         "building": "843",
-        "coord": [-135.198724, -78.184723],
+        "coord": [34.7021912,135.4955866],
         "street": "7 Avenue",
         "zipcode": "31827"
       },
@@ -94,7 +94,7 @@
       "company": "Creative",
       "address": {
         "building": "2561",
-        "coord": [108.937845, -9.629334],
+        "coord": [52.5170365,13.3888599],
         "street": "2 Boulevard",
         "zipcode": "14792"
       },
@@ -112,7 +112,7 @@
       "company": "Pomodoro",
       "address": {
         "building": "7002",
-        "coord": [74.874191, 20.193174],
+        "coord": [37.7792588,-122.4193286],
         "street": "11 Street",
         "zipcode": "52987"
       },
@@ -130,7 +130,7 @@
       "company": "Maker",
       "address": {
         "building": "572",
-        "coord": [92.127446, 27.857092],
+        "coord": [53.4794892,-2.2451148],
         "street": "8 Avenue",
         "zipcode": "13986"
       },
@@ -148,7 +148,7 @@
       "company": "Coffeeroasters",
       "address": {
         "building": "4851",
-        "coord": [-13.409107, -17.689134],
+        "coord": [1.357107,103.8194992],
         "street": "13 Boulevard",
         "zipcode": "68725"
       },
@@ -184,7 +184,7 @@
       "company": "Crowdfund",
       "address": {
         "building": "3795",
-        "coord": [34.932189, -62.194134],
+        "coord": [-41.5000831,172.8344077],
         "street": "5 Avenue",
         "zipcode": "19473"
       },
@@ -202,7 +202,7 @@
       "company": "Typemaster",
       "address": {
         "building": "2456",
-        "coord": [-101.849473, -10.684139],
+        "coord": [51.4893335,-0.1440551],
         "street": "19 Boulevard",
         "zipcode": "62851"
       },
@@ -220,7 +220,7 @@
       "company": "Office Lite",
       "address": {
         "building": "3011",
-        "coord": [71.927402, 6.271835],
+        "coord": [-45.8740984,170.5035755],
         "street": "14 Street",
         "zipcode": "19482"
       },
@@ -256,7 +256,7 @@
       "company": "Blogr",
       "address": {
         "building": "8429",
-        "coord": [55.739134, -7.401784],
+        "coord": [39.7837304,-100.445882],
         "street": "3 Boulevard",
         "zipcode": "39824"
       },
