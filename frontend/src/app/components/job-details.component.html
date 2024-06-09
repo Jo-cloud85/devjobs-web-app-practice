@@ -1,7 +1,7 @@
-<div class="container d-flex flex-column gap-3 col-8 pt-5">
+<div class="container d-flex flex-column gap-3 col-8 pt-5" *ngIf="job; else retrieveJobError">
     <div class="container p-0">
         <div class="d-flex align-items-center justify-content-between gap-5 main">
-            <div class="d-flex align-items-center justify-content-center logo-bg" [style.background]="job.logoBackground" >
+            <div class="d-flex align-items-center justify-content-center logo-bg" [style.background]="job.logoBackground">
                 <img [src]="job.logo" [alt]="job.company" class="svg-img">
             </div>
             <div>
@@ -9,7 +9,7 @@
                 <p class="fw-light m-0">{{job.company | lowercase}}.com</p>
             </div>
             <div class="p-0 ms-auto">
-                <a [href]="job.website" class="btn btn-secondary py-2 px-3">Company Site</a>
+                <a [routerLink]="['/company', job.id, job.company]" class="btn btn-secondary py-2 px-3">Company Site</a>
             </div>
         </div>
     </div>
@@ -43,3 +43,6 @@
         </div>
     </div>
 </div>
+<ng-template #retrieveJobError>
+    <p>Seems like there is some issue retrieving the job details...</p>
+</ng-template>

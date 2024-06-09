@@ -1,1 +1,35 @@
-<p>company-details works!</p>
+<div 
+    class="d-flex flex-column gap-3"
+    *ngIf="company; else retrieveCompanyError"
+>
+    <div class="company-info">
+        <h2>{{ company.company }}</h2>
+        <span><strong>Address:</strong> {{ company.address }}</span>
+        <div id="map" style="height: 400px; width: 100%;"></div>
+    </div>
+
+    <div class="reviews">
+        <h4>Reviews</h4>
+        <ul>
+            <li *ngFor="let review of company.reviews">
+                <strong>Date:</strong> {{ review.date.$date | date: 'yyyy-MM-dd' }}<br>
+                <strong>Comments:</strong> {{ review.comments.join(' ') }}<br>
+                <strong>Score:</strong> {{ review.score }}<br>
+            </li>
+        </ul>
+    </div>
+
+    <div class="job-postings">
+        <h4>Job Postings</h4>
+        <ul>
+            <li *ngFor="let job  of company.jobPostings">
+                <strong>Position:</strong> {{ job.position }}<br>
+                <strong>Posted At:</strong> {{ job.postedAt }}<br>
+                <strong>Contract:</strong> {{ job.contract }}<br>
+            </li>
+        </ul>
+    </div>
+</div>
+<ng-template #retrieveCompanyError>
+    <p>Seems like there is some issue retrieving the company details...</p>
+</ng-template>

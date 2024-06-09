@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -35,7 +34,7 @@ public class JobApplController {
 
     @PostMapping(path="/submit", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> submitApplication(
-        @RequestPart("id") Integer companyId,
+        @RequestPart("id") String companyId,
         @RequestPart("company") String companyName,
         @RequestPart("name") String name,
         @RequestPart("email") String email,
@@ -56,7 +55,7 @@ public class JobApplController {
 
         // Saving application details to MySQL
         Application application = new Application(
-            application_id, companyId, companyName, name, email, mobileNumber, position, startDate, feedback
+            application_id, Integer.parseInt(companyId), companyName, name, email, mobileNumber, position, startDate, feedback
         );
 
         // Only when we successfully save to MySQL then we save to S3
@@ -109,6 +108,9 @@ public class JobApplController {
 
         for (Application appl : applList) {
             JsonObject jsonObj = Json.createObjectBuilder()
+                .add("applicationId", appl.getApplication_id())
+                .add("id", appl.getId())
+                .add("company", appl.getCompany())
                 .add("name", appl.getName())
                 .add("email", appl.getEmail())
                 .add("mobileNumber", appl.getMobileNumber())
@@ -136,26 +138,27 @@ public class JobApplController {
     }
 
 
-    @GetMapping(path="/application/{file_id}")
-    public ResponseEntity<String> getAllApplications(@PathVariable("file_id") String fileId) {
-        Application appl = appliedJobSvc.getApplicationByIdFrSql(fileId);
+    // Not used
+    // @GetMapping(path="/application/{file_id}")
+    // public ResponseEntity<String> getApplicationById(@PathVariable("file_id") String fileId) {
+    //     Application appl = appliedJobSvc.getApplicationByIdFrSql(fileId);
 
-        JsonObject jsonObj = Json.createObjectBuilder()
-            .add("name", appl.getName())
-            .add("email", appl.getEmail())
-            .add("mobileNumber", appl.getMobileNumber())
-            .add("position", appl.getPosition())
-            .add("startDate", appl.getStartDate().toString())
-            .add("feedback", appl.getFeedback())
-            .build();
+    //     JsonObject jsonObj = Json.createObjectBuilder()
+    //         .add("name", appl.getName())
+    //         .add("email", appl.getEmail())
+    //         .add("mobileNumber", appl.getMobileNumber())
+    //         .add("position", appl.getPosition())
+    //         .add("startDate", appl.getStartDate().toString())
+    //         .add("feedback", appl.getFeedback())
+    //         .build();
             
-        StringWriter stringWriter = new StringWriter();
-        try (JsonWriter jsonWriter = Json.createWriter(stringWriter)) {
-            jsonWriter.writeObject(jsonObj);
-        }
+    //     StringWriter stringWriter = new StringWriter();
+    //     try (JsonWriter jsonWriter = Json.createWriter(stringWriter)) {
+    //         jsonWriter.writeObject(jsonObj);
+    //     }
 
-        return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(stringWriter.toString()); 
-    }
+    //     return ResponseEntity
+    //         .status(HttpStatus.OK)
+    //         .body(stringWriter.toString()); 
+    // }
 }

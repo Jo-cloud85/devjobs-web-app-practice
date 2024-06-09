@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'job/:id/:company/apply', component: JobFormComponent},
   {path: 'job/:id/:company/apply-success', component: AppliedSuccessComponent},  
   {path: 'appliedjobs', component: AppliedJobsListComponent},
-  {path: 'company/:company-id', component: CompanyDetailsComponent},
+  {path: 'company/:id/:company', component: CompanyDetailsComponent},
   {path: '**', redirectTo: '/', pathMatch: 'full'}
 ];
 

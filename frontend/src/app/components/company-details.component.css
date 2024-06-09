@@ -1,0 +1,13 @@
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+ul {
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+}
+
+li {
+    list-style-type: none; 
+}
