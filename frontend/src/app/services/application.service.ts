@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, firstValueFrom, map } from "rxjs";
+import { ApplicationSummary } from "../models/application.model";
 
 @Injectable({providedIn: 'root'})
 export class ApplicationService {
@@ -14,5 +15,28 @@ export class ApplicationService {
         return this.http.post('/api/submit', formData);
     }
 
-    // retrieveJobApplication()
+    getAllJobApplications(): Promise<ApplicationSummary[]> {
+        return firstValueFrom(this.http.get<any[]>('/api/applications'))
+            .then((results: any[]) => {
+                return results.map(result => ({
+                    id: result.id,
+                    company: result.company,
+                    position: result.position,
+                    startDate: new Date(result.startDate),
+                } as ApplicationSummary));
+            });
+    }
+
+    getJobApplicationById(jobId: String): Observable<ApplicationSummary> {
+        return this.http.get<ApplicationSummary>(`/api/application/${jobId}`)
+            .pipe (
+                map(val => ({
+                    id: val.id,
+                    company: val.company,
+                    position: val.position,
+                    startDate: new Date(val.startDate),
+                  })
+                )
+            )
+    }
 }

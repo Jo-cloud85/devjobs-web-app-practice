@@ -6,6 +6,8 @@ USE appliedJobs;
 
 CREATE TABLE jobs (
     application_id CHAR(8) NOT NULL PRIMARY KEY,
+    id INT NOT NULL,
+    company VARCHAR(32) NOT NULL,
     name VARCHAR(64) NOT NULL,
     email VARCHAR(64) NOT NULL,
     mobileNumber VARCHAR(16) NOT NULL,

@@ -1,9 +1,6 @@
-// export interface ApplicationDetails {
-//     name: String;
-//     email: String;
-//     mobileNumber: String;
-//     position: String;
-//     startDate: Date;
-//     feedback: String;
-//     resume: 
-// }
+export interface ApplicationSummary {
+    id: Number,
+    company: String,
+    position: String;
+    startDate: Date;
+}

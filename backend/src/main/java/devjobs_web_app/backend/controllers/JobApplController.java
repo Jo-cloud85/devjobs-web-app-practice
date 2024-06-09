@@ -22,18 +22,21 @@ import org.springframework.web.multipart.MultipartFile;
 import devjobs_web_app.backend.models.Application;
 import devjobs_web_app.backend.services.AppliedJobService;
 import jakarta.json.Json;
+import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonWriter;
 
 @RestController
 @RequestMapping("/api")
-public class UploadApplController {
+public class JobApplController {
     
     @Autowired
     private AppliedJobService appliedJobSvc;
 
     @PostMapping(path="/submit", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> submitApplication(
+        @RequestPart("id") Integer companyId,
+        @RequestPart("company") String companyName,
         @RequestPart("name") String name,
         @RequestPart("email") String email,
         @RequestPart("mobileNumber") String mobileNumber,
@@ -53,11 +56,11 @@ public class UploadApplController {
 
         // Saving application details to MySQL
         Application application = new Application(
-            application_id, name, email, mobileNumber, position, startDate, feedback
+            application_id, companyId, companyName, name, email, mobileNumber, position, startDate, feedback
         );
 
         // Only when we successfully save to MySQL then we save to S3
-        Boolean isApplicationSaved = appliedJobSvc.saveDetailsToSql(application);
+        Boolean isApplicationSaved = appliedJobSvc.saveApplicationToSql(application);
 
         if (isApplicationSaved) {
             // Saving resume file to S3
@@ -74,6 +77,8 @@ public class UploadApplController {
             }
     
             JsonObject jsonObj = Json.createObjectBuilder()
+                .add("id", companyId)
+                .add("company", companyName)
                 .add("name", name)
                 .add("email", email)
                 .add("mobileNumber", mobileNumber)
@@ -95,12 +100,62 @@ public class UploadApplController {
         }
     }
 
-    // @GetMapping(path="/application/{file_id}")
-    // public ResponseEntity<String> retrieveApplication(@PathVariable("file_id") String fileId) {
-    //     byte[] buffer = appliedJobSvc.getFileFromS3(fileId);
 
-    //     return ResponseEntity
-    //         .status(HttpStatus.OK)
-    //         .body(buffer);
-    // }
+    @GetMapping(path="/applications")
+    public ResponseEntity<String> getAllApplications() {
+        List<Application> applList = appliedJobSvc.getAllApplicationsFrSql();
+
+        JsonArrayBuilder jsonArrBuilder = Json.createArrayBuilder();
+
+        for (Application appl : applList) {
+            JsonObject jsonObj = Json.createObjectBuilder()
+                .add("name", appl.getName())
+                .add("email", appl.getEmail())
+                .add("mobileNumber", appl.getMobileNumber())
+                .add("position", appl.getPosition())
+                .add("startDate", appl.getStartDate().toString())
+                .add("feedback", appl.getFeedback())
+                .build();
+            jsonArrBuilder.add(jsonObj);
+        }
+        
+        StringWriter stringWriter = new StringWriter();
+        try (JsonWriter jsonWriter = Json.createWriter(stringWriter)) {
+            jsonWriter.writeArray(jsonArrBuilder.build());
+        }
+
+        if (applList.isEmpty()) {
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("No jobs applications found");
+        }
+
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(stringWriter.toString());
+    }
+
+
+    @GetMapping(path="/application/{file_id}")
+    public ResponseEntity<String> getAllApplications(@PathVariable("file_id") String fileId) {
+        Application appl = appliedJobSvc.getApplicationByIdFrSql(fileId);
+
+        JsonObject jsonObj = Json.createObjectBuilder()
+            .add("name", appl.getName())
+            .add("email", appl.getEmail())
+            .add("mobileNumber", appl.getMobileNumber())
+            .add("position", appl.getPosition())
+            .add("startDate", appl.getStartDate().toString())
+            .add("feedback", appl.getFeedback())
+            .build();
+            
+        StringWriter stringWriter = new StringWriter();
+        try (JsonWriter jsonWriter = Json.createWriter(stringWriter)) {
+            jsonWriter.writeObject(jsonObj);
+        }
+
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(stringWriter.toString()); 
+    }
 }

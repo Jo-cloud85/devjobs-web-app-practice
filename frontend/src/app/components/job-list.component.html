@@ -4,7 +4,7 @@
             class="card m-2 py-2 col-auto" 
             style="width: 19rem; cursor: pointer;" 
             *ngFor="let job of displayedJobs; let i = index"
-            [routerLink]="['/job', job.id]"
+            [routerLink]="['/job', job.id, job.company]"
         >
             <div class="card-body d-flex flex-column justify-content-between gap-5">
                 <div class="d-flex flex-column gap-1">

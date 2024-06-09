@@ -1,1 +1,8 @@
-<p>applied-jobs-list works!</p>
+<div *ngIf="resultP$ | async as results">
+    <div *ngFor="let result of results" style="margin: 10px;">
+        <div>Company Id: {{result.id}}</div>
+        <div>Company: {{result.company}}</div>
+        <div>Position: {{result.position}}</div>
+        <div>Start Date: {{result.startDate}}</div>
+    </div>
+</div>

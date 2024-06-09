@@ -2,10 +2,12 @@ package devjobs_web_app.backend.repositories;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +20,7 @@ public class AppliedJobSqlRepo {
     JdbcTemplate jdbcTemplate;
 
     public static final String SQL_ADD_APPLICATION = """
-            insert into jobs (application_id, name, email, mobileNumber, position, startDate, feedback) VALUES (?, ?, ?, ?, ?, ?, ?)
+            insert into jobs (application_id, id, company, name, email, mobileNumber, position, startDate, feedback) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
 
     public static final String SQL_GET_ALL_APPLICATION = """
@@ -35,6 +37,8 @@ public class AppliedJobSqlRepo {
         isSaved = jdbcTemplate.update(
             SQL_ADD_APPLICATION, 
             appl.getApplication_id(),
+            appl.getId(),
+            appl.getCompany(),
             appl.getName(),
             appl.getEmail(),
             appl.getMobileNumber(),
@@ -45,9 +49,13 @@ public class AppliedJobSqlRepo {
         return isSaved > 0 ? true : false;
     }   
 
-    // public Optional<List<Application>> getAllApplications() {
-        
-    // }
+    
+    public Optional<List<Application>> getAllApplications() {
+        List<Application> applList = new LinkedList<>();
+        applList = jdbcTemplate.query(SQL_GET_ALL_APPLICATION, BeanPropertyRowMapper.newInstance(Application.class));
+        if (applList.isEmpty()) return Optional.empty();
+        return Optional.of(applList);
+    }
 
 
     public Optional<Application> getApplicationById(String appl_id) {
@@ -56,6 +64,8 @@ public class AppliedJobSqlRepo {
 
             Application appl = new Application();
             appl.setApplication_id(appl_id);
+            appl.setId(rs.getInt("id"));
+            appl.setCompany(rs.getString("company"));
             appl.setName(rs.getString("name"));
             appl.setEmail(rs.getString("email"));
             appl.setMobileNumber(rs.getString("mobileNumber"));

@@ -1,6 +1,6 @@
 package devjobs_web_app.backend.services;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,11 +27,15 @@ public class AppliedJobService {
         return s3Repo.getFileFromS3(fileId);
     }
 
-    public Boolean saveDetailsToSql(Application appl) {
+    public Boolean saveApplicationToSql(Application appl) {
         return applJobSqlRepo.saveApplication(appl);
     }
 
-    public Optional<Application> getDetailsByIdFrSql(String appId) {
-        return applJobSqlRepo.getApplicationById(appId);
+    public List<Application> getAllApplicationsFrSql() {
+        return applJobSqlRepo.getAllApplications().get();
+    }
+
+    public Application getApplicationByIdFrSql(String appId) {
+        return applJobSqlRepo.getApplicationById(appId).get();
     }
 }

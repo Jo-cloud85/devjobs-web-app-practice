@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Application {
     private String application_id;
+    private Integer id;
+    private String company;
     private String name;
     private String email;
     private String mobileNumber;

@@ -10,9 +10,9 @@ import { CompanyDetailsComponent } from './components/company-details.component'
 
 const routes: Routes = [
   {path: '', component: MainComponent},
-  {path: 'job/:id', component: JobDetailsComponent},
-  {path: 'job/:id/apply', component: JobFormComponent},
-  {path: 'job/:id/apply-success', component: AppliedSuccessComponent},  
+  {path: 'job/:id/:company', component: JobDetailsComponent},
+  {path: 'job/:id/:company/apply', component: JobFormComponent},
+  {path: 'job/:id/:company/apply-success', component: AppliedSuccessComponent},  
   {path: 'appliedjobs', component: AppliedJobsListComponent},
   {path: 'company/:company-id', component: CompanyDetailsComponent},
   {path: '**', redirectTo: '/', pathMatch: 'full'}

@@ -63,8 +63,15 @@ export class JobFormComponent implements OnInit, OnDestroy {
 
   submit(): void {
     const jobId = +this.activatedRoute.snapshot.params['id']; 
+    const company = this.activatedRoute.snapshot.params['company']; 
+
     if (this.jobForm.valid) {
       const formData = new FormData();
+
+      // Because I want to know which job i applied to and save this into the database
+      formData.append('id', jobId.toString());
+      formData.append('company', company);
+
       const name = this.jobForm.get('name')?.value;
       formData.append('name', `${name.firstName} ${name.lastName}`);
       formData.append('email', this.jobForm.get('email')?.value);
@@ -75,7 +82,7 @@ export class JobFormComponent implements OnInit, OnDestroy {
       formData.append('resume', this.jobForm.get('resumeFileSource')?.value);
 
       const otherDocs = this.jobForm.get('otherDocs') as FormArray;
-      otherDocs.controls.forEach((control, index) => {
+      otherDocs.controls.forEach((control) => {
         const file = control.value.file;
         if (file) {
           formData.append(`otherDocs`, file);
@@ -90,7 +97,7 @@ export class JobFormComponent implements OnInit, OnDestroy {
         next: (result: any) => {
           console.log("Submitted result:", result);
           alert(`Job application: ${result}`);
-          this.router.navigate(['/job', jobId, 'apply-success']);
+          this.router.navigate(['/job', jobId, company, 'apply-success']);
         },
         error: (err: HttpErrorResponse) => {
           console.error("HTTP Error:", err);
