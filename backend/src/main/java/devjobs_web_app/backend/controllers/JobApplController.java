@@ -76,6 +76,7 @@ public class JobApplController {
             }
     
             JsonObject jsonObj = Json.createObjectBuilder()
+                .add("application_id", application_id)
                 .add("id", companyId)
                 .add("company", companyName)
                 .add("name", name)
