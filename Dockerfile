@@ -40,6 +40,10 @@ COPY --from=javabuild /backend/target/backend-0.0.1-SNAPSHOT.jar app.jar
 
 ENV S3_SECRET_KEY=
 ENV S3_ACCESS_KEY=
+ENV MYSQL_URL=
+ENV MYSQLUSER=
+ENV MYSQLPASSWORD=
+
 ENV PORT=5050
 
 EXPOSE ${PORT}
