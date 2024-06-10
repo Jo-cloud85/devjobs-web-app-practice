@@ -17,5 +17,8 @@ CREATE TABLE jobs (
 );
 
 -- When adding this database to Railway, comment this off as we are using Railway root user
-grant all privileges on appliedJobs.* to 'abcde'@'%';
-flush privileges;
+-- grant all privileges on appliedJobs.* to 'abcde'@'%';
+-- flush privileges;
+
+GRANT ALL PRIVILEGES ON appliedJobs.* TO 'root'@'%';
+FLUSH PRIVILEGES;
