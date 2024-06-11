@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 export class SearchComponent implements OnInit {
 
   private readonly formbuilder = inject(FormBuilder);
-  private readonly jobSvc = inject(JobService);
   private readonly router = inject(Router);
 
   searchForm !: FormGroup;

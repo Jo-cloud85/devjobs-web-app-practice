@@ -19,7 +19,7 @@ export class JobFormComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
 
   jobForm !: FormGroup;
-  dueDateInPast !: boolean;
+  // dueDateInPast !: boolean;
   private sub$ !: Subscription;
 
   ngOnInit(): void {
@@ -112,11 +112,11 @@ export class JobFormComponent implements OnInit, OnDestroy {
   }
 
   
-  checkDueDate(): void {
-		const startingDate = new Date(this.jobForm.value.startDate);
-		const currentDate = new Date();
-		this.dueDateInPast = startingDate < currentDate;
-	}
+  // checkDueDate(): void {
+	// 	const startingDate = new Date(this.jobForm.value.startDate);
+	// 	const currentDate = new Date();
+	// 	this.dueDateInPast = startingDate < currentDate;
+	// }
 
 
   ngOnDestroy(): void {
