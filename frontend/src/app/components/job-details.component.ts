@@ -16,13 +16,10 @@ export class JobDetailsComponent {
   private readonly activatedRoute = inject(ActivatedRoute);
 
   sub$ !: Subscription;
-
   job !: JobDetails;
-
-  id !: number;
-
+  
   ngOnInit(): void {
-    const jobId = +this.activatedRoute.snapshot.paramMap.get('id')!;
+    const jobId = +this.activatedRoute.snapshot.params['id'];
     this.jobSvc.getJob(jobId)
       .then(details => {
         this.job = details;

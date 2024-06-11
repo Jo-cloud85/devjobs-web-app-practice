@@ -73,7 +73,7 @@ public class DevJobController {
         @PathVariable("id") String id) {
 
         Job job = devJobSvc.getJobById(Integer.parseInt(id));
-        return ResponseEntity.status(200).body(convertJobToStr(job));
+        return ResponseEntity.status(200).body(convertJobToJsonStr(job));
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,7 @@ public class DevJobController {
     }
 
 
-    private String convertJobToStr(Job job) { 
+    private String convertJobToJsonStr(Job job) { 
         JsonObject jsonObj = jobToJsonObject(job);
         StringWriter stringWriter = new StringWriter();
         try (JsonWriter jsonWriter = Json.createWriter(stringWriter)) {

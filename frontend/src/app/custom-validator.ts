@@ -20,4 +20,13 @@ export function lessThanToday(): ValidatorFn {
     return null;
   };
 }
-  
+
+export function nonWhiteSpace(ctrl: AbstractControl): ValidationErrors | null {
+  const value = ctrl.value;
+  for (let i=0; i< value.length; i++) {
+    if (value[i] === ' ' || value[i] === '\t' || value[i] === '\n' || value[i] === '\r') {
+      return { nonWhiteSpace: true };
+    }
+  }
+  return null;
+}

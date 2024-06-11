@@ -1,5 +1,6 @@
 <div class="container col-8 py-5">
     <form class="form-group container d-flex flex-column gap-5" [formGroup]="jobForm" (ngSubmit)="submit()">
+        <h2>Fill in your particulars here: </h2>
         <!-- Name-->
         <div>
             <p>Name</p>
@@ -119,7 +120,7 @@
             <div>
                 <p>Earliest Possible Start Date</p>
                 <div>
-                    <input class="form-control" type="date" formControlName="startDate" (change)="checkDueDate()">
+                    <input class="form-control" type="date" formControlName="startDate">
                     <small 
                         class="form-text text-danger"
                         *ngIf="jobForm.get('startDate')?.touched && jobForm.get('startDate')?.hasError('required')">
@@ -127,8 +128,8 @@
                     </small>
                     <small 
                         class="form-text text-danger"
-                        *ngIf="dueDateInPast">
-                        Date cannot be in the past
+                        *ngIf="jobForm.get('startDate')?.touched && jobForm.get('startDate')?.hasError('lessThanToday')">
+                        Date cannot be in the past!
                     </small>
                 </div>
             </div>

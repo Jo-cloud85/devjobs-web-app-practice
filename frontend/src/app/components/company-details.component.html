@@ -22,13 +22,19 @@
 
     <div class="job-postings">
         <h4>Job Postings</h4>
-        <ul>
-            <li *ngFor="let job  of company.jobPostings">
-                <strong>Position:</strong> {{ job.position }}<br>
-                <strong>Posted At:</strong> {{ job.postedAt }}<br>
-                <strong>Contract:</strong> {{ job.contract }}<br>
-            </li>
-        </ul>
+        <div class="container p-0">
+            <ul class="row">
+                <li 
+                    class="card m-2 py-2 col-auto"
+                    *ngFor="let job  of company.jobPostings">
+                    <div class="card-body">
+                        <strong>Position:</strong> {{ job.position }}<br>
+                        <strong>Posted At:</strong> {{ job.postedAt }}<br>
+                        <strong>Contract:</strong> {{ job.contract }}<br>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 <ng-template #retrieveCompanyError>

@@ -49,4 +49,7 @@ ENV PORT=5050
 
 EXPOSE ${PORT}
 
-ENTRYPOINT SERVER_PORT=${PORT} java -jar app.jar
+ENTRYPOINT SERVER_PORT=${PORT}
+
+# When you want to run your docker file
+# docker run -d -p 5050:8080 -e MYSQL_URL=jdbc:mysql://root:SiqAqKIqiaweQhIRRNrjOLcHyrWTjesH@monorail.proxy.rlwy.net:38379/appliedJobs -e MYSQLUSER=root -e MYSQLPASSWORD=SiqAqKIqiaweQhIRRNrjOLcHyrWTjesH -e MONGO_URL=mongodb://mongo:vYaeHfVwSlnJgmrWKzwFFKlRHsFvAxvm@monorail.proxy.rlwy.net:12561/devjobs?authSource=admin joyoung/devjobs:v1

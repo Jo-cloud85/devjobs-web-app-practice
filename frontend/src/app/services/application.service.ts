@@ -12,33 +12,32 @@ export class ApplicationService {
     // If you are using CORS, then your url should be full i.e. 'http://localhost:5050/api/jobs'
 
     submitJobApplication(formData: FormData): Observable<any> {
-        return this.http.post('/api/submit', formData);
+      return this.http.post('/api/submit', formData);
     }
 
     getAllJobApplications(): Promise<ApplicationSummary[]> {
-        return firstValueFrom(this.http.get<any[]>('/api/applications'))
-            .then((results: any[]) => {
-                return results.map(result => ({
-                    applicationId: result.applicationId,
-                    id: result.id,
-                    company: result.company,
-                    position: result.position,
-                    startDate: new Date(result.startDate),
-                } as ApplicationSummary));
-            });
+      return firstValueFrom(this.http.get<any[]>('/api/applications'))
+        .then((results: any[]) => {
+          return results.map(result => ({
+            applicationId: result.applicationId,
+            id: result.id,
+            company: result.company,
+            position: result.position,
+            startDate: new Date(result.startDate),
+          } as ApplicationSummary));
+        });
     }
 
-    // getJobApplicationById(jobId: String): Observable<ApplicationSummary> {
-    //     return this.http.get<ApplicationSummary>(`/api/application/${jobId}`)
-    //         .pipe (
-    //             map(val => ({
-    //                 applicationId: val.applicationId,
-    //                 id: val.id,
-    //                 company: val.company,
-    //                 position: val.position,
-    //                 startDate: new Date(val.startDate),
-    //               })
-    //             )
-    //         )
-    // }
+    getJobApplicationById(jobId: String): Observable<ApplicationSummary> {
+      return this.http.get<ApplicationSummary>(`/api/application/${jobId}`)
+        .pipe (
+          map(val => ({
+            applicationId: val.applicationId,
+            id: val.id,
+            company: val.company,
+            position: val.position,
+            startDate: new Date(val.startDate),
+          }))
+        )
+    }
 }

@@ -13,7 +13,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class JobListComponent implements OnInit, OnChanges, OnDestroy {
 
   private readonly jobSvc = inject(JobService);
-  private readonly router = inject(Router);
 
   @Input() searchParams !: { q: string, loc: string, fullTime: boolean, sortByRecent: boolean };
 
@@ -36,14 +35,12 @@ export class JobListComponent implements OnInit, OnChanges, OnDestroy {
       this.searchParams?.fullTime?.toString() || 'false',
       this.searchParams?.sortByRecent?.toString() || 'false'
     ).subscribe({
-      next: (result: any) => {
-        this.allJobs = result;
-        this.updateDisplayedJobs();
-      },
-      error: (error: HttpErrorResponse) => {
-        console.error('Error fetching jobs:', error.message);
-      },
-      complete: () => console.log("Load jobs completed!")
+        next: (result: any) => {
+          this.allJobs = result;
+          this.updateDisplayedJobs();
+        },
+        error: (error: HttpErrorResponse) => console.error('Error fetching jobs:', error),
+        complete: () => console.log("Load jobs completed!")
     });
   }
 

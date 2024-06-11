@@ -85,7 +85,7 @@ export class JobFormComponent implements OnInit, OnDestroy {
       otherDocs.controls.forEach((control) => {
         const file = control.value.file;
         if (file) {
-          formData.append(`otherDocs`, file);
+          formData.append('otherDocs', file);
         }
       });
 

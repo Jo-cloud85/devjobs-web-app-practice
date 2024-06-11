@@ -61,6 +61,7 @@ public class S3Repo {
         return s3.getUrl(Utils.S3_BUCKET_NAME, key).toString();
     }
 
+    
     public byte[] getFileFromS3(String fileId) {
         GetObjectRequest getRequest = new GetObjectRequest(Utils.S3_BUCKET_NAME, fileId);
         S3Object result = s3.getObject(getRequest);

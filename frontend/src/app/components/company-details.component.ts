@@ -13,10 +13,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class CompanyDetailsComponent implements OnInit, OnDestroy {
 
-  company !: Company;
   private readonly companySvc = inject(CompanyService);
   private readonly activatedRoute = inject(ActivatedRoute);
 
+  company !: Company;
   private sub$ !: Subscription;
 
   ngOnInit(): void {
@@ -32,6 +32,7 @@ export class CompanyDetailsComponent implements OnInit, OnDestroy {
       })
   }
 
+
   ngAfterViewInit(): void {
     console.log("ngAfterViewInit activated!")
     setTimeout(() => {
@@ -39,6 +40,7 @@ export class CompanyDetailsComponent implements OnInit, OnDestroy {
     }, 500);
   }
   
+
   initMap(): void {
     const map = L.map('map').setView([51.505, -0.09], 13); // Default view if company coordinates are not available
 
@@ -54,7 +56,8 @@ export class CompanyDetailsComponent implements OnInit, OnDestroy {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
     }).addTo(map);
-}
+  }
+
 
   ngOnDestroy(): void {
     this.sub$.unsubscribe();

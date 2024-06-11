@@ -1,4 +1,4 @@
-<div class="container d-flex flex-column gap-3 col-8 pt-5" *ngIf="job; else retrieveJobError">
+<div class="container d-flex flex-column gap-3 col-8 py-5" *ngIf="job; else retrieveJobError">
     <div class="container p-0">
         <div class="d-flex align-items-center justify-content-between gap-5 main">
             <div class="d-flex align-items-center justify-content-center logo-bg" [style.background]="job.logoBackground">
@@ -41,6 +41,9 @@
                 <li class="ordered-list-item">{{i+1}}. {{item}}</li>
             </ul>
         </div>
+    </div>
+    <div class="d-flex align-self-end">
+        <a class="btn btn-warning" [routerLink]="['/']">Go Back</a>
     </div>
 </div>
 <ng-template #retrieveJobError>

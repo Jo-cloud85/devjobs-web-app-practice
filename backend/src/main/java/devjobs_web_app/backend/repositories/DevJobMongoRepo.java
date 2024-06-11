@@ -122,7 +122,6 @@ public class DevJobMongoRepo {
 
         // This is for sorting by most recent later
         LocalDateTime postedAtTime = convertPostedAtToLocalDateTime(postedAt);
-        
         job.setPostedAtRealTime(postedAtTime);
 
         return job;

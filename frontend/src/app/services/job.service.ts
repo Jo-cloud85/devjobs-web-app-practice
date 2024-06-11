@@ -1,15 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { JobDetails, JobSummary } from '../models/job.model';
 import { Injectable, inject } from "@angular/core";
-import { Observable, Subject, firstValueFrom, map, tap } from 'rxjs';
+import { Observable, firstValueFrom, map, tap } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class JobService {
 
     private readonly httpClient = inject(HttpClient);
-
-    // onJobsList = new Subject<JobSummary[]>();
-    // onJob = new Subject<JobDetails>();
 
     jobsList : JobSummary[] = [];
     
