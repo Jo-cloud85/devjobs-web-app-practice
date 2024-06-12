@@ -62,6 +62,7 @@ public class JobApplController {
         Boolean isApplicationSaved = appliedJobSvc.saveApplicationToSql(application);
 
         if (isApplicationSaved) {
+            
             // Saving resume file to S3
             String urlForResume = appliedJobSvc.saveFileToS3(resumeFile);
     
