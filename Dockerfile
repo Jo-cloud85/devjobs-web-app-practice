@@ -28,7 +28,7 @@ COPY backend/src src
 # Copy Angular files to Spring Boot
 COPY --from=ngbuild /frontend/dist/frontend/browser/ src/main/resources/static
 
-# produce target/day36.giphy-0.0.1-SNAPSHOT.jar
+# produce target/backend-0.0.1-SNAPSHOT.jar
 RUN ./mvnw package -Dmaven.test.skip=true
 
 # Run container
@@ -38,6 +38,7 @@ WORKDIR /app
 
 COPY --from=javabuild /backend/target/backend-0.0.1-SNAPSHOT.jar app.jar
 
+# Uncomment when you want to run the docker container locally
 ENV S3_SECRET_KEY=
 ENV S3_ACCESS_KEY=
 ENV MYSQL_URL=
@@ -49,7 +50,20 @@ ENV PORT=5050
 
 EXPOSE ${PORT}
 
-ENTRYPOINT SERVER_PORT=${PORT}
+ENTRYPOINT SERVER_PORT=${PORT} java -jar app.jar
 
-# When you want to run your docker file
-# docker run -d -p 5050:8080 -e MYSQL_URL=jdbc:mysql://root:SiqAqKIqiaweQhIRRNrjOLcHyrWTjesH@monorail.proxy.rlwy.net:38379/appliedJobs -e MYSQLUSER=root -e MYSQLPASSWORD=SiqAqKIqiaweQhIRRNrjOLcHyrWTjesH -e MONGO_URL=mongodb://mongo:vYaeHfVwSlnJgmrWKzwFFKlRHsFvAxvm@monorail.proxy.rlwy.net:12561/devjobs?authSource=admin joyoung/devjobs:v1
+# When you want to run your docker container WITH Railway
+# docker run -d -p 5050:8080 \
+#   -e MYSQL_URL='jdbc:mysql://root:SUVbNnslexhTNaKQwCnPTQUFaWGSvIOG@roundhouse.proxy.rlwy.net:13186/appliedJobs' \
+#   -e MYSQLUSER=root \
+#   -e MYSQLPASSWORD='SUVbNnslexhTNaKQwCnPTQUFaWGSvIOG' \
+#   -e MONGO_URL='mongodb://mongo:mfgnxaCMqHViqSJCVoXvzHimBHboltYp@monorail.proxy.rlwy.net:29750/devjobs?authSource=admin' \
+#   joyoung/devapp:v1.1
+
+# When you want to run your docker container WITH local
+# docker run -d -p 5050:8080 \
+#   -e MYSQL_URL=jdbc:mysql://localhost:3306/appliedJobs \
+#   -e MYSQLUSER=abcde \
+#   -e MYSQLPASSWORD=abcde \
+#   -e MONGO_URL=mongodb://localhost:27017 \
+#   joyoung/devapp:v1.1

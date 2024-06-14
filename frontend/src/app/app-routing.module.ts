@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { JobDetailsComponent } from './components/job-details.component';
 import { JobFormComponent } from './components/job-form.component';
 import { AppliedSuccessComponent } from './components/applied-success.component';

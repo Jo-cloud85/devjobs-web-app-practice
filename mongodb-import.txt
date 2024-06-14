@@ -1,7 +1,7 @@
 Railway:
-mongoimport --uri 'mongodb://mongo:vYaeHfVwSlnJgmrWKzwFFKlRHsFvAxvm@monorail.proxy.rlwy.net:12561/devjobs?authSource=admin' --db devjobs --collection companies --jsonArray companies.json
+mongoimport --uri "mongodb://mongo:mfgnxaCMqHViqSJCVoXvzHimBHboltYp@monorail.proxy.rlwy.net:29750/devjobs?authSource=admin" --db devjobs --collection companies --jsonArray companies.json
 
-mongoimport --uri 'mongodb://mongo:vYaeHfVwSlnJgmrWKzwFFKlRHsFvAxvm@monorail.proxy.rlwy.net:12561/devjobs?authSource=admin' --db devjobs --collection data --jsonArray data.json
+mongoimport --uri "mongodb://mongo:mfgnxaCMqHViqSJCVoXvzHimBHboltYp@monorail.proxy.rlwy.net:29750/devjobs?authSource=admin" --db devjobs --collection data --jsonArray data.json
 
 Local: 
 mongoimport --uri mongodb://localhost:27017  --db devjobs --collection data --jsonArray data.json
